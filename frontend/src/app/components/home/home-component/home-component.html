@@ -1,0 +1,256 @@
+<div class="admin-dashboard animate-fade-in">
+
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <div>
+      <h2 class="fw-bold text-dark-hotel mb-1">Panel de Infraestructura</h2>
+    </div>
+    <div class="d-flex gap-3">
+      <button (click)="crearHotel()" class="btn btn-hotel-primary px-3 py-2 rounded-3 d-flex align-items-center gap-2">
+        <i class="fas fa-hotel"></i>
+        <span>Registrar Nuevo Hotel</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="row g-4 mb-5">
+
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="kpi-card p-4 rounded-4 bg-white shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted-hotel fw-medium text-sm">Hoteles (Activos)</span>
+          <div class="icon-shape bg-primary-soft text-primary-hotel">
+            <i class="fas fa-building fs-5"></i>
+          </div>
+        </div>
+        <h3 class="fw-bold text-dark-hotel mb-1">{{hotelesActivos}}</h3>
+        <p class="text-xs text-muted-hotel mb-0">Hoteles disponibles </p>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="kpi-card p-4 rounded-4 bg-white shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted-hotel fw-medium text-sm">Habitaciones Vinculadas</span>
+          <div class="icon-shape bg-secondary-soft text-secondary-hotel">
+            <i class="fas fa-door-closed fs-5"></i>
+          </div>
+        </div>
+        <h3 class="fw-bold text-dark-hotel mb-1">458</h3>
+        <p class="text-xs text-primary-hotel mb-0 fw-medium">
+          Relación por `hotel_id` íntegra
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="kpi-card p-4 rounded-4 bg-white shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted-hotel fw-medium text-sm">Disponibles</span>
+          <div class="icon-shape bg-success-soft text-success-hotel">
+            <i class="far fa-check-square fs-5"></i>
+          </div>
+        </div>
+        <h3 class="fw-bold text-dark-hotel mb-1">{{hotelesDisponibles}}</h3>
+        <p class="text-xs text-success-hotel mb-0 fw-medium">
+          <i class="fas fa-circle text-success-hotel me-1" style="font-size: 6px; vertical-align: middle;"></i> Listo para check-in
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="kpi-card p-4 rounded-4 bg-white shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted-hotel fw-medium text-sm">Mantenimiento / Inactivas</span>
+          <div class="icon-shape bg-warning-soft text-warning-hotel">
+            <i class="fas fa-tools fs-5"></i>
+          </div>
+        </div>
+        <h3 class="fw-bold text-dark-hotel mb-1">{{hotelesInactivos}}</h3>
+        <p class="text-xs text-warning-hotel mb-0 fw-medium">
+          <i class="fas fa-exclamation-triangle me-1"></i> Bloqueadas en inventario
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row g-4">
+
+    <div class="col-12 col-xl-7">
+      <div class="dashboard-block p-4 rounded-4 bg-white shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div>
+            <h4 class="fs-5 fw-bold text-dark-hotel mb-1">Directorio de Hoteles</h4>
+            <span class="text-xs text-muted-hotel">Tabla: Hoteles Activos</span>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle custom-hotel-table">
+            <thead>
+              <tr>
+                <th>Nombre / Contacto</th>
+                <th>Dirección</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let hotel of lstHoteles">
+                <td>
+                  <div class="fw-bold text-dark-hotel">{{hotel.nombre}}</div>
+                  <span class="text-xs text-muted-hotel">{{hotel.correo}}</span>
+                </td>
+                <td class="text-sm text-muted-hotel text-truncate" style="max-width: 200px;">
+                  {{hotel.direccion}}
+                </td>
+                <td><span class="badge-status status-activo">{{hotel.estado}}</span></td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <button (click)="editarHotel(hotel.id)" class="btn btn-icon-action" title="Editar Hotel">
+                      <i class="fas fa-pen text-xs"></i>
+                    </button>
+                    <button (click)="verDetalleHotel(hotel)" class="btn btn-icon-action-active" title="Filtrar Habitaciones">
+                      <i class="far fa-eye text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-xl-5">
+      <div class="dashboard-block p-4 rounded-4 bg-white shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div>
+            <h4 class="fs-5 fw-bold text-dark-hotel mb-1">Muestra de Habitaciones ($N$)</h4>
+            <span class="text-xs text-muted-hotel">Clave Única: `uq_habitacion_por_hotel`</span>
+          </div>
+          <button routerLink="/habitaciones" class="btn btn-hotel-link text-xs fw-semibold p-0">Ver Todas</button>
+        </div>
+
+        <div class="d-flex flex-column gap-3">
+          <div class="room-data-item p-3 rounded-3 border">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <div>
+                <span class="badge-room-num text-xs fw-bold me-2">Nº 101A</span>
+                <span class="text-sm fw-semibold text-dark-hotel">Suite</span>
+              </div>
+              <span class="badge-status status-disponible">Disponible</span>
+            </div>
+            <div class="d-flex justify-content-between text-xs text-muted-hotel">
+              <span><i class="fas fa-users me-1 text-muted"></i> Capacidad: 4 Pers</span>
+              <span class="fw-bold text-primary-hotel">$250.00 / noche</span>
+            </div>
+          </div>
+
+          <div class="room-data-item p-3 rounded-3 border">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <div>
+                <span class="badge-room-num text-xs fw-bold me-2">Nº 102</span>
+                <span class="text-sm fw-semibold text-dark-hotel">Doble</span>
+              </div>
+              <span class="badge-status status-mantenimiento">Mantenimiento</span>
+            </div>
+            <div class="d-flex justify-content-between text-xs text-muted-hotel">
+              <span><i class="fas fa-users me-1 text-muted"></i> Capacidad: 2 Pers</span>
+              <span class="fw-bold text-primary-hotel">$120.00 / noche</span>
+            </div>
+          </div>
+
+          <div class="room-data-item p-3 rounded-3 border">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <div>
+                <span class="badge-room-num text-xs fw-bold me-2">Nº 204</span>
+                <span class="text-sm fw-semibold text-dark-hotel">Individual</span>
+              </div>
+              <span class="badge-status status-ocupada">Ocupada</span>
+            </div>
+            <div class="d-flex justify-content-between text-xs text-muted-hotel">
+              <span><i class="fas fa-user me-1 text-muted"></i> Capacidad: 1 Pers</span>
+              <span class="fw-bold text-primary-hotel">$75.00 / noche</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- MODAL HOTELES -->
+
+
+<div class="custom-modal-backdrop" *ngIf="isModalOpen" (click)="cerrarModal()">
+  <div class="custom-modal-content p-4 rounded-4 shadow-lg animate-scale-up" (click)="$event.stopPropagation()">
+
+    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-light pb-3">
+      <div class="d-flex align-items-center gap-3">
+        <div class="modal-hotel-avatar d-flex align-items-center justify-content-center rounded-3">
+          <i class="fas fa-hotel text-teal-primary fs-5"></i>
+        </div>
+        <div>
+          <h4 class="h5 fw-bold text-dark-hotel mb-0">{{ hotelSeleccionado?.nombre }}</h4>
+        </div>
+      </div>
+      <button (click)="cerrarModal()" class="btn btn-close-modal" type="button">
+        <i class="fas fa-times fs-5"></i>
+      </button>
+    </div>
+
+    <div class="d-flex flex-column gap-3">
+
+      <div class="info-item-group p-3 rounded-3">
+        <span class="info-label text-uppercase tracking-wider fs-8 fw-bold d-block mb-1">Ubicación Inmobiliaria</span>
+        <div class="d-flex align-items-center gap-2 text-sm text-dark-hotel">
+          <i class="fas fa-map-marker-alt text-teal-primary opacity-70 w-20px text-center"></i>
+          <span>{{ hotelSeleccionado?.direccion }}</span>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-12 col-sm-6">
+          <div class="info-item-group p-3 rounded-3">
+            <span class="info-label text-uppercase tracking-wider fs-8 fw-bold d-block mb-1">Central Telefónica</span>
+            <div class="d-flex align-items-center gap-2 text-sm text-dark-hotel">
+              <i class="fas fa-phone text-teal-primary opacity-70 w-20px text-center"></i>
+              <span class="fw-semibold">{{ hotelSeleccionado?.telefono }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6">
+          <div class="info-item-group p-3 rounded-3">
+            <span class="info-label text-uppercase tracking-wider fs-8 fw-bold d-block mb-1">Email Corporativo</span>
+            <div class="d-flex align-items-center gap-2 text-sm text-dark-hotel text-truncate">
+              <i class="fas fa-envelope text-teal-primary opacity-70 w-20px text-center"></i>
+              <span class="text-truncate">{{ hotelSeleccionado?.correo }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-item-group p-3 rounded-3">
+        <span class="info-label text-uppercase tracking-wider fs-8 fw-bold d-block mb-1">Estado Operativo</span>
+        <div class="d-flex align-items-center gap-2">
+          <i class="fas fa-toggle-on text-teal-primary opacity-70 w-20px text-center"></i>
+          <span class="badge rounded-pill px-3 py-1 fs-8 fw-bold text-uppercase"
+                [ngClass]="hotelSeleccionado?.estado === 'Activo' ? 'bg-success-soft text-success' : 'bg-danger-soft text-danger'">
+            {{ hotelSeleccionado?.estado }}
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-4 pt-3 border-top border-light d-flex justify-content-end">
+      <button (click)="cerrarModal()" class="btn btn-hotel-secondary px-4 py-2 rounded-3 fw-medium text-sm">
+        Cerrar Vista
+      </button>
+    </div>
+
+  </div>
+</div>

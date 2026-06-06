@@ -1,0 +1,130 @@
+/* Utilidades y Paleta Ejecutiva */
+.text-dark-hotel { color: #1E293B; }
+.text-muted-hotel { color: #64748B; }
+.text-teal-primary { color: #0F766E; }
+.fs-7 { font-size: 0.875rem !important; }
+.border-light-hotel { border-color: #E2E8F0 !important; }
+
+.max-w-form {
+  max-width: 650px;
+  background-color: #FFFFFF;
+}
+
+/* Etiquetas del Formulario */
+.form-label-hotel {
+  font-size: 0.815rem;
+  color: #475569;
+  letter-spacing: 0.01em;
+  display: block;
+}
+
+/* Envoltura de Controles */
+.input-group-hotel {
+  display: flex;
+  flex-direction: column; /* Alineación vertical interna para contener el feedback */
+  align-items: stretch;
+}
+
+.input-icon-wrapper {
+  position: absolute;
+  left: 16px;
+  top: 12px; /* Alineación vertical centralizada fija */
+  color: #94A3B8;
+  font-size: 0.95rem;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Inputs y Selects Base */
+.form-control-hotel, .form-select-hotel {
+  width: 100%;
+  padding: 10px 16px 10px 44px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1E293B;
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-select-hotel {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px 12px;
+}
+
+/* Foco Normal */
+.form-control-hotel:focus, .form-select-hotel:focus {
+  background-color: #FFFFFF !important;
+  border-color: #0F766E !important;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+  outline: none;
+}
+
+/* 🚨 MANEJO DE ESTADOS INVÁLIDOS (BORDES Y SOMBRAS ROJAS) */
+.form-control-hotel.is-invalid, .form-select-hotel.is-invalid {
+  border-color: #EF4444 !important; /* Rojo elegante de alerta */
+  background-color: #FFF5F5;
+}
+
+.form-control-hotel.is-invalid:focus, .form-select-hotel.is-invalid:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+}
+
+/* Cuando es inválido, cambiamos el color del icono del campo a rojo de alerta */
+.form-control-hotel.is-invalid ~ .input-icon-wrapper,
+.form-select-hotel.is-invalid ~ .input-icon-wrapper {
+  color: #EF4444;
+}
+
+/* Texto de Feedback de validación */
+.invalid-feedback-hotel {
+  display: none;
+  width: 100%;
+  margin-top: 0.35rem;
+  font-size: 0.785rem;
+  color: #EF4444;
+  font-weight: 500;
+}
+
+/* Mostramos el texto explicativo sólo si el componente tiene la clase de error */
+.form-control-hotel.is-invalid ~ .invalid-feedback-hotel,
+.form-select-hotel.is-invalid ~ .invalid-feedback-hotel {
+  display: block;
+}
+
+/* Botones SuiteCore */
+.btn-hotel-primary {
+  background-color: #0F766E;
+  color: #FFFFFF;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-hotel-primary:hover {
+  background-color: #134E4A;
+}
+
+.btn-hotel-secondary {
+  background-color: #F1F5F9;
+  color: #475569;
+  border: 1px solid #E2E8F0;
+  transition: all 0.2s ease;
+}
+
+.btn-hotel-secondary:hover {
+  background-color: #E2E8F0;
+  color: #1E293B;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,146 @@
+<div class="container-fluid px-0 animate-fade-in">
+
+  <div class="mb-4">
+    <a routerLink="/hoteles" class="btn btn-link text-teal-primary p-0 text-decoration-none d-inline-flex align-items-center gap-2 mb-2 fs-7 fw-medium">
+      <i class="fas fa-arrow-left"></i> Volver al catálogo
+    </a>
+    <h2 class="h4 text-dark-hotel fw-bold mb-1">
+      {{ esNuevo ? 'Registrar Nueva Sede' : 'Modificar Datos de la Sede' }}
+    </h2>
+    <p class="text-muted-hotel mb-0 fs-7">
+      {{ esNuevo ? 'Completa los campos para dar de alta un nuevo hotel en el sistema.' : 'Actualiza la información operativa de la sucursal seleccionada.' }}
+    </p>
+  </div>
+
+  <div class="card border-0 shadow-sm rounded-4 p-4 max-w-form mx-auto">
+    <form #hotelForm="ngForm" (ngSubmit)="onSubmit(hotelForm)" novalidate>
+      <div class="row g-3.5">
+
+        <div class="col-12">
+          <label for="nombre" class="form-label-hotel fw-semibold mb-1.5">Nombre del Hotel</label>
+          <div class="input-group-hotel position-relative">
+            <span class="input-icon-wrapper"><i class="fas fa-building"></i></span>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              class="form-control-hotel"
+              [ngClass]="{ 'is-invalid': nombre.invalid && (nombre.touched || hotelForm.submitted) }"
+              placeholder="Ej. Hotel Costa Linda"
+              [(ngModel)]="hotel.nombre"
+              required
+              #nombre="ngModel"
+            >
+            <div class="invalid-feedback-hotel">
+              <i class="fas fa-exclamation-circle me-1"></i> El nombre del hotel es obligatorio.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <label for="direccion" class="form-label-hotel fw-semibold mb-1.5">Dirección de la Sede</label>
+          <div class="input-group-hotel position-relative">
+            <span class="input-icon-wrapper"><i class="fas fa-map-marker-alt"></i></span>
+            <input
+              type="text"
+              id="direccion"
+              name="direccion"
+              class="form-control-hotel"
+              [ngClass]="{ 'is-invalid': direccion.invalid && (direccion.touched || hotelForm.submitted) }"
+              placeholder="Ej. Guazacapan Santa Rosa"
+              [(ngModel)]="hotel.direccion"
+              required
+              #direccion="ngModel"
+            >
+            <div class="invalid-feedback-hotel">
+              <i class="fas fa-exclamation-circle me-1"></i> La dirección física es requerida.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label for="telefono" class="form-label-hotel fw-semibold mb-1.5">Teléfono</label>
+          <div class="input-group-hotel position-relative">
+            <span class="input-icon-wrapper"><i class="fas fa-phone"></i></span>
+            <input
+              type="tel"
+              id="telefono"
+              name="telefono"
+              class="form-control-hotel"
+              [ngClass]="{ 'is-invalid': telefono.invalid && (telefono.touched || hotelForm.submitted) }"
+              placeholder="Ej. 54871468"
+              [(ngModel)]="hotel.telefono"
+              required
+              #telefono="ngModel"
+            >
+            <div class="invalid-feedback-hotel">
+              <i class="fas fa-exclamation-circle me-1"></i> El teléfono es necesario para las reservas.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label for="correo" class="form-label-hotel fw-semibold mb-1.5">Correo Electrónico</label>
+          <div class="input-group-hotel position-relative">
+            <span class="input-icon-wrapper"><i class="fas fa-envelope"></i></span>
+            <input
+              type="email"
+              id="correo"
+              name="correo"
+              class="form-control-hotel"
+              [ngClass]="{ 'is-invalid': correo.invalid && (correo.touched || hotelForm.submitted) }"
+              placeholder="Ej. costaLinda@gmail.com"
+              [(ngModel)]="hotel.correo"
+              required
+              email
+              #correo="ngModel"
+            >
+            <div class="invalid-feedback-hotel">
+              <i class="fas fa-exclamation-circle me-1"></i> Escribe un correo electrónico válido.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <label for="estado" class="form-label-hotel fw-semibold mb-1.5">Estado Operativo</label>
+          <div class="input-group-hotel position-relative">
+            <span class="input-icon-wrapper"><i class="fas fa-toggle-on"></i></span>
+            <select
+              id="estado"
+              name="estado"
+              class="form-select-hotel"
+              [ngClass]="{ 'is-invalid': (estado.invalid || hotel.estado === '') && (estado.touched || hotelForm.submitted) }"
+              [(ngModel)]="hotel.estado"
+              required
+              #estado="ngModel"
+            >
+              <option value="" disabled selected>Selecciona un estado...</option>
+              <option value="Activo">Activo</option>
+              <option value="Inactivo">Inactivo</option>
+            </select>
+            <div class="invalid-feedback-hotel">
+              <i class="fas fa-exclamation-circle me-1"></i> Selecciona un estado de disponibilidad inicial.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 my-4">
+          <hr class="border-light-hotel my-0">
+        </div>
+
+        <div class="col-12 d-flex flex-column-reverse flex-sm-row justify-content-end gap-2.5">
+          <a routerLink="/hoteles" class="btn btn-hotel-secondary px-4 py-2.5 rounded-3 fw-medium fs-7 text-center">
+            Cancelar
+          </a>
+          <button [disabled]="hotelForm.invalid" type="submit"
+                  class="btn btn-hotel-primary px-4 py-2.5 rounded-3 fw-medium fs-7 shadow-sm d-flex align-items-center justify-content-center gap-2">
+            <i class="fas fa-save"></i>
+            <span>{{ esNuevo ? 'Crear Registro' : 'Actualizar Registro' }}</span>
+          </button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+</div>

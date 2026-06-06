@@ -1,0 +1,48 @@
+/* --- DISEÑO RESPONSIVO GLOBAL --- */
+
+/* Por defecto (Pantallas grandes: Computadoras) */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar-container {
+  width: 280px;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+.main-wrapper {
+  margin-left: 280px;
+  width: calc(100% - 280px);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+/* 📱 tablets y Celulares (Pantallas menores a 992px) */
+@media (max-width: 991.98px) {
+  .sidebar-container {
+    transform: translateX(-100%); /* Esconde el sidebar a la izquierda */
+    transition: transform 0.3s ease;
+  }
+
+  /* Cuando agregues una clase 'show' con Angular, el menú aparecerá */
+  .sidebar-container.show {
+    transform: translateX(0);
+  }
+
+  .main-wrapper {
+    margin-left: 0 !important; /* El contenido derecho ahora usa toda la pantalla */
+    width: 100% !important;
+  }
+
+  /* Reducimos los paddings del contenido en móviles para ganar espacio */
+  .content-area {
+    padding: 1.5rem !important;
+  }
+}

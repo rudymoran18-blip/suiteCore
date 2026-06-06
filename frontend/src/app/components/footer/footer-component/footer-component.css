@@ -1,0 +1,84 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.hotel-footer {
+  background-color: #FFFFFF;
+  border-top: 1px solid #E2E8F0 !important;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Tipografía y Textos */
+.text-muted-hotel {
+  color: #64748B;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.brand-highlight {
+  color: #0F766E; /* Color Primario */
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Enlaces del Footer */
+.footer-link {
+  color: #64748B;
+  font-size: 0.875rem;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 4px 0; /* Espacio sutil arriba y abajo para mejorar el click en móviles */
+  transition: color 0.2s ease-in-out;
+}
+
+.footer-link:hover {
+  color: #134E4A; /* Color Secundario */
+}
+
+/* Indicador de Estado del Servidor */
+.status-text {
+  font-size: 0.815rem;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  background-color: #22C55E; /* Color de Éxito */
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+  animation: pulse 2s infinite;
+}
+
+/* Animación de pulso */
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 5px rgba(34, 197, 94, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+/* 🛠️ AJUSTE PARA DISPOSITIVOS MÓVILES EXTREMADAMENTE PEQUEÑOS (< 360px) */
+@media (max-width: 359.98px) {
+  .footer-actions {
+    flex-direction: column !important; /* Fuerza a que los enlaces y el estado se apilen individualmente */
+    gap: 2px !important;
+  }
+
+  .footer-links {
+    flex-direction: column; /* Apila Soporte Premium y Privacidad uno sobre otro */
+    gap: 1px !important;
+  }
+}

@@ -1,0 +1,88 @@
+:host {
+  display: block;
+  z-index: 1040; /* Por encima de la navbar en teléfonos */
+}
+
+.sidebar {
+  width: 280px;
+  height: 100vh;
+  background-color: #134E4A; /* Color Secundario */
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tracking-wide { letter-spacing: 0.05em; }
+.opacity-20 { opacity: 0.15; }
+.opacity-60 { opacity: 0.60; }
+.text-emerald-light { color: #22C55E; }
+
+.sidebar-icon {
+  width: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.nav-link {
+  font-weight: 500;
+  opacity: 0.85;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  opacity: 1;
+}
+
+.nav-link.active {
+  background-color: #0F766E !important; /* Color Primario */
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.25);
+  font-weight: 600;
+  opacity: 1;
+}
+
+.btn-close-sidebar {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-close-sidebar:hover {
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.avatar-placeholder {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #0F766E;
+  color: white;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-meta { line-height: 1.3; }
+
+/* 🛠️ SISTEMA RESPONSIVO INTEGRADO CON EL SERVICIO DE ANGULAR */
+@media (max-width: 991.98px) {
+  /* Oculta la barra desplazándola a la izquierda por defecto */
+  .sidebar.sidebar-mobile-hidden {
+    transform: translateX(-100%);
+  }
+
+  /* 🌟 CORRECCIÓN CRÍTICA: Cuando Angular inyecta la clase, la devuelve a la pantalla */
+  .sidebar.show-sidebar {
+    transform: translateX(0) !important;
+  }
+}

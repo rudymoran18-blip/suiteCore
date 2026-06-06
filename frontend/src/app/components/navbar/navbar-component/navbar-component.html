@@ -1,0 +1,26 @@
+<nav class="hotel-navbar d-flex align-items-center justify-content-between px-3 px-md-5">
+
+  <div class="d-flex align-items-center gap-2 gap-sm-3 flex-grow-1">
+
+    <button (click)="onToggleMenu()" class="btn btn-menu-toggle d-lg-none me-1" type="button" title="Abrir Menú">
+      <i class="fas fa-bars fs-5"></i>
+    </button>
+
+    <div class="page-context">
+      <h1 class="mb-0 text-dark-hotel fw-semibold page-title">Recepción</h1>
+      <span class="text-xs text-muted-hotel d-block text-truncate max-w-text">Sede Central • Piso 1</span>
+    </div>
+  </div>
+
+  <div class="d-flex align-items-center gap-1 gap-sm-3">
+    <div class="v-divider mx-1 mx-sm-2"></div>
+    <div class="nav-icon-btn position-relative" title="Notificaciones">
+      <i class="far fa-bell fs-5"></i>
+      <span class="notification-badge bg-warning-hotel"></span>
+    </div>
+    <div class="nav-icon-btn" title="Mensajes">
+      <i class="far fa-comment-dots fs-5"></i>
+    </div>
+  </div>
+
+</nav>

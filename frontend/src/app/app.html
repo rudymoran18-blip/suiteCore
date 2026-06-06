@@ -1,0 +1,19 @@
+<div class="app-layout">
+  <!-- 1. El Sidebar se queda fijo a la izquierda ocupando todo el alto -->
+  <app-sidebar-component></app-sidebar-component>
+
+  <!-- 2. Todo el bloque derecho (Navbar + Contenido Dinámico + Footer) -->
+  <div class="main-wrapper d-flex flex-column">
+
+    <!-- La Navbar corona la parte superior del contenedor derecho -->
+    <app-navbar-component></app-navbar-component>
+
+    <!-- El contenido cambia dinámicamente aquí (aquí cargará tu app-habitaciones) -->
+    <main class="content-area flex-grow-1 p-5">
+      <router-outlet></router-outlet>
+    </main>
+
+    <!-- El cierre perfecto al final de la página -->
+    <app-footer-component></app-footer-component>
+  </div>
+</div>

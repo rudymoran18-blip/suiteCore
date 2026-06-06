@@ -1,0 +1,114 @@
+:host {
+  display: block;
+  z-index: 1020; /* Garantiza quedar por encima del contenido dinámico, pero debajo de modales */
+  position: sticky;
+  top: 0;
+}
+
+.hotel-navbar {
+  height: 80px; /* Reducido ligeramente de 85px para un look más estilizado */
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #E2E8F0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  transition: height 0.2s ease;
+}
+
+/* Tipografía Adaptable */
+.text-dark-hotel {
+  color: #1E293B;
+}
+
+.text-muted-hotel {
+  color: #64748B;
+}
+
+.page-title {
+  font-size: 1.25rem; /* Equivalente a fs-5 */
+  line-height: 1.2;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+
+/* Botón Hamburguesa Táctil para Móviles */
+.btn-menu-toggle {
+  background: none;
+  border: none;
+  color: #64748B;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.btn-menu-toggle:hover, .btn-menu-toggle:focus {
+  background-color: #F1F5F9;
+  color: #0F766E;
+}
+
+/* Iconos de Interfaz (Tamaño de toque optimizado para móviles) */
+.nav-icon-btn {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-icon-btn:hover {
+  background-color: #F1F5F9;
+  color: #0F766E;
+}
+
+/* Badge de Advertencia (#F59E0B) */
+.notification-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  background-color: #F59E0B;
+}
+
+.v-divider {
+  width: 1px;
+  height: 28px;
+  background-color: #E2E8F0;
+}
+
+/* Seguridad para evitar desbordes en pantallas minúsculas */
+.max-w-text {
+  max-width: 150px;
+}
+
+/* 🛠️ MEDIA QUERIES PARA ADAPTABILIDAD TOTAL */
+
+/* Celulares medianos y pequeños (< 576px) */
+@media (max-width: 575.98px) {
+  .hotel-navbar {
+    height: 65px; /* Navbar más compacta en móviles para maximizar el área de trabajo */
+  }
+
+  .page-title {
+    font-size: 1.05rem; /* Texto un poco más pequeño para que quepa todo */
+  }
+
+  .max-w-text {
+    max-width: 110px; /* Evita que el subtítulo empuje los iconos fuera de la pantalla */
+  }
+
+  .nav-icon-btn {
+    width: 36px;
+    height: 36px; /* Ajuste sutil de tamaño sin perder la facilidad de toque con el dedo */
+  }
+}

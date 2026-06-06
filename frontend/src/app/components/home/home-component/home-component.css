@@ -1,0 +1,162 @@
+/* Paleta y Tipografías Core */
+.text-dark-hotel { color: #1E293B; }
+.text-muted-hotel { color: #64748B; }
+.text-teal-primary { color: #0F766E; }
+.text-primary-hotel { color: #0284C7; }
+.text-success-hotel { color: #16A34A; }
+.text-warning-hotel { color: #D97706; }
+.text-sm { font-size: 0.875rem !important; }
+.text-xs { font-size: 0.75rem !important; }
+.fs-8 { font-size: 0.7rem !important; }
+
+/* Botón Primario */
+.btn-hotel-primary {
+  background-color: #0F766E;
+  color: #FFFFFF;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+.btn-hotel-primary:hover {
+  background-color: #134E4A;
+}
+
+/* Botón Secundario */
+.btn-hotel-secondary {
+  background-color: #F1F5F9;
+  color: #475569;
+  border: 1px solid #E2E8F0;
+  transition: all 0.2s ease;
+}
+.btn-hotel-secondary:hover {
+  background-color: #E2E8F0;
+  color: #1E293B;
+}
+
+/* Acciones en Tablas */
+.btn-icon-action, .btn-icon-action-active {
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748B;
+  transition: all 0.2s ease;
+}
+.btn-icon-action:hover {
+  background-color: #E2E8F0;
+  color: #1E293B;
+}
+.btn-icon-action-active:hover {
+  background-color: rgba(15, 118, 110, 0.1);
+  color: #0F766E;
+  border-color: rgba(15, 118, 110, 0.2);
+}
+
+/* Badges y Alertas Suaves */
+.bg-primary-soft { background-color: #E0F2FE; }
+.bg-secondary-soft { background-color: #F1F5F9; }
+.bg-success-soft { background-color: #DCFCE7; color: #15803D !important; }
+.bg-warning-soft { background-color: #FEF3C7; }
+.bg-danger-soft { background-color: #FEE2E2; color: #B91C1C !important; }
+
+.icon-shape {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Badges de Tablas */
+.badge-status {
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 50rem;
+}
+.status-activo { background-color: #DCFCE7; color: #16A34A; }
+.status-disponible { background-color: #DCFCE7; color: #16A34A; }
+.status-mantenimiento { background-color: #FEF3C7; color: #D97706; }
+.status-ocupada { background-color: #FEE2E2; color: #EF4444; }
+.badge-room-num { background-color: #F1F5F9; color: #475569; padding: 0.25rem 0.4rem; border-radius: 6px; }
+
+/* ========================================== */
+/* 🎭 CAPA MODAL CUSTOM                      */
+/* ========================================== */
+.custom-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+}
+
+.custom-modal-content {
+  background-color: #FFFFFF;
+  width: 100%;
+  max-width: 500px;
+}
+
+.modal-hotel-avatar {
+  width: 44px;
+  height: 44px;
+  background-color: rgba(15, 118, 110, 0.08);
+  color: #0F766E;
+}
+
+.btn-close-modal {
+  background: none;
+  border: none;
+  color: #94A3B8;
+  padding: 6px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+.btn-close-modal:hover {
+  color: #1E293B;
+  background-color: #F1F5F9;
+}
+
+.info-item-group {
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+}
+
+.info-label {
+  color: #64748B;
+  letter-spacing: 0.03em;
+}
+
+.w-20px {
+  width: 20px;
+}
+
+/* Animaciones */
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+.animate-scale-up {
+  animation: scaleUp 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
