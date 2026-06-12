@@ -41,10 +41,10 @@ export class HotelComponent {
   editarHotel(id: number  | undefined ):void{
     console.log('Editar hotel con ID:', id);
     if(id===0){
-      this.router.navigate(['/form', 0]);
+      this.router.navigate(['hoteles/form/', 0]);
       return;
     }
-    this.router.navigate(['/form', id]);
+    this.router.navigate(['/hoteles/form/', id]);
   }
 
   eliminarHotel(id: number):void{

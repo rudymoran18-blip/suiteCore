@@ -1,0 +1,167 @@
+<div class="container-fluid px-0 animate-fade-in">
+
+  <div class="mb-4">
+    <h2 class="h4 text-dark-hotel fw-bold mb-1">
+      {{ esNuevo ? 'Nueva Habitación' : 'Modificar Parámetros' }}
+    </h2>
+    <p class="text-muted-hotel mb-0 fs-7">
+      {{ esNuevo ? 'Registra una nueva habitación en el inventario físico global.' : 'Actualiza las propiedades de la habitación #' + id }}
+    </p>
+  </div>
+
+  <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+    <div class="card-body p-4 p-md-5">
+
+      <form #roomForm="ngForm" (ngSubmit)="onSubmit(roomForm)">
+        <div class="row g-4">
+
+          <div class="col-12 col-md-6">
+            <label class="form-label text-dark-hotel fw-semibold fs-7 mb-2">Hotel Asignado *</label>
+            <div class="input-group-custom">
+              <span class="input-icon-wrapper"><i class="fas fa-building"></i></span>
+              <select name="hotelId"
+                      [(ngModel)]="habitacion.hotelId"
+                      required
+                      #hotelId="ngModel"
+                      [ngClass]="{'is-invalid-custom': hotelId.touched && hotelId.invalid}"
+                      class="form-select custom-input-hotel">
+                <option [ngValue]="null" disabled selected>Selecciona una sede principal...</option>
+                <option *ngFor="let hotel of lstHotel" [ngValue]="hotel.id">
+                  {{ hotel.nombre }}
+                </option>
+              </select>
+            </div>
+            <div *ngIf="hotelId.touched && hotelId.invalid" class="error-feedback-container animate-fade-in">
+              <i class="fas fa-exclamation-circle me-1.5"></i>
+              <span>Debes asignar un hotel de origen para la habitación.</span>
+            </div>
+          </div>
+
+        <div class="col-12 col-md-6">
+            <label class="form-label text-dark-hotel fw-semibold fs-7 mb-2">Número de Dormitorio *</label>
+            <div class="input-group-custom">
+              <span class="input-icon-wrapper"><i class="fas fa-door-closed"></i></span>
+              <input type="text"
+                     name="numero"
+                     [(ngModel)]="habitacion.numero"
+                     required
+                     min="1"
+                     placeholder="Ej: 101, 204"
+                     #numero="ngModel"
+                     [ngClass]="{'is-invalid-custom': numero.touched && numero.invalid}"
+                     class="form-control custom-input-hotel">
+            </div>
+
+            <div *ngIf="numero.touched && numero.invalid" class="error-feedback-container animate-fade-in">
+              <i class="fas fa-exclamation-circle me-1.5"></i>
+              <span *ngIf="numero.errors?.['required']">El número de identificación física es obligatorio.</span>
+              <span *ngIf="numero.errors?.['pattern'] || numero.errors?.['min']">El número debe ser un valor entero mayor a cero.</span>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label class="form-label text-dark-hotel fw-semibold fs-7 mb-2">Tipo de Habitación *</label>
+            <div class="input-group-custom">
+              <span class="input-icon-wrapper"><i class="fas fa-bed"></i></span>
+              <select name="tipo"
+                      [(ngModel)]="habitacion.tipo"
+                      required
+                      #tipo="ngModel"
+                      [ngClass]="{'is-invalid-custom': tipo.touched && tipo.invalid}"
+                      class="form-select custom-input-hotel">
+                <option value="" disabled selected>Selecciona el tipo...</option>
+                <option value="Individual">Individual</option>
+                <option value="Doble">Doble</option>
+                <option value="Suite">Suite</option>
+                <option value="Familiar">Familiar</option>
+              </select>
+            </div>
+            <div *ngIf="tipo.touched && tipo.invalid" class="error-feedback-container animate-fade-in">
+              <i class="fas fa-exclamation-circle me-1.5"></i>
+              <span>Selecciona una categoría válida.</span>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label class="form-label text-dark-hotel fw-semibold fs-7 mb-2">Capacidad Máxima *</label>
+            <div class="input-group-custom">
+              <span class="input-icon-wrapper"><i class="fas fa-users"></i></span>
+              <input type="number"
+                     name="capacidad"
+                     [(ngModel)]="habitacion.capacidad"
+                     required
+                     min="1"
+                     placeholder="Cantidad de huéspedes"
+                     #capacidad="ngModel"
+                     [ngClass]="{'is-invalid-custom': capacidad.touched && capacidad.invalid}"
+                     class="form-control custom-input-hotel">
+            </div>
+            <div *ngIf="capacidad.touched && capacidad.invalid" class="error-feedback-container animate-fade-in">
+              <i class="fas fa-exclamation-circle me-1.5"></i>
+              <span>La capacidad debe ser de al menos 1 persona.</span>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label class="form-label text-dark-hotel fw-semibold fs-7 mb-2">Precio por Noche (Q) *</label>
+            <div class="input-group-custom">
+              <span class="input-icon-wrapper fw-bold fs-7">Q</span>
+              <input type="text"
+                     name="precioNoche"
+                     [(ngModel)]="habitacion.precioNoche"
+                     required
+                     placeholder="0.00"
+                     #precioNoche="ngModel"
+                     [ngClass]="{'is-invalid-custom': precioNoche.touched && precioNoche.invalid}"
+                     class="form-control custom-input-hotel">
+            </div>
+            <div *ngIf="precioNoche.touched && precioNoche.invalid" class="error-feedback-container animate-fade-in">
+              <i class="fas fa-exclamation-circle me-1.5"></i>
+              <span>Establece la tarifa base nocturna.</span>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label text-dark-hotel fw-semibold fs-7 mb-2">Estado de Disponibilidad *</label>
+            <div class="input-group-custom">
+              <span class="input-icon-wrapper"><i class="fas fa-info-circle"></i></span>
+              <select name="estado"
+                      [(ngModel)]="habitacion.estado"
+                      required
+                      #estado="ngModel"
+                      [ngClass]="{'is-invalid-custom': estado.touched && estado.invalid}"
+                      class="form-select custom-input-hotel">
+                <option value="" disabled selected>Selecciona el estado operativo...</option>
+                <option value="Disponible">Disponible</option>
+                <option value="Ocupada">Ocupada</option>
+                <option value="Mantenimiento">Mantenimiento</option>
+                <option value="Inactiva">Inactiva</option>
+              </select>
+            </div>
+            <div *ngIf="estado.touched && estado.invalid" class="error-feedback-container animate-fade-in">
+              <i class="fas fa-exclamation-circle me-1.5"></i>
+              <span>Indica el estado operacional inicial de la celda.</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="d-flex justify-content-end gap-3 mt-5 pt-3 border-top border-light-hotel">
+          <button type="button" (click)="regresar()" class="btn btn-hotel-secondary px-4 py-2.5 rounded-3 fw-medium fs-7">
+            Cancelar
+          </button>
+
+          <button [disabled]="roomForm.invalid || isLoading"
+                  type="submit"
+                  class="btn btn-hotel-primary px-4 py-2.5 rounded-3 fw-medium fs-7 shadow-sm d-flex align-items-center justify-content-center gap-2">
+            <i class="fas" [ngClass]="isLoading ? 'fa-spinner fa-spin' : 'fa-save'"></i>
+            <span>{{ isLoading ? 'Guardando...' : (esNuevo ? 'Crear Registro' : 'Actualizar Registro') }}</span>
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</div>

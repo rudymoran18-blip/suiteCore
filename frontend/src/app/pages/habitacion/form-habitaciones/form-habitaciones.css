@@ -1,0 +1,73 @@
+/* --- Estilos base existentes --- */
+.text-dark-hotel { color: #1E293B; }
+.text-muted-hotel { color: #64748B; }
+.fs-7 { font-size: 0.875rem !important; }
+.text-xs { font-size: 0.8rem; }
+
+.input-group-custom {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon-wrapper {
+  position: absolute;
+  left: 14px;
+  color: #94A3B8;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.custom-input-hotel {
+  padding-left: 42px !important;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid #CBD5E1;
+  color: #1E293B;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.custom-input-hotel:focus {
+  border-color: #0F766E;
+  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.1);
+  outline: none;
+}
+
+/* --- Nuevas Reglas de Validación Premium --- */
+
+/* Input Erróneo: Borde e iluminación roja suave */
+.is-invalid-custom {
+  border-color: #EF4444 !important;
+  background-color: #FEF2F2 !important; /* Fondo sutil rojizo */
+  background-image: none !important; /* Remueve el icono por defecto de Bootstrap */
+}
+
+.is-invalid-custom:focus {
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
+}
+
+/* Contenedor del Mensaje de Error (Estilo idéntico a tus capturas) */
+.error-feedback-container {
+  display: flex;
+  align-items: center;
+  color: #DC2626; /* Rojo de alerta visible */
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.border-light-hotel {
+  border-color: #F1F5F9 !important;
+}
+
+/* Animación fluida para la aparición de errores */
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}

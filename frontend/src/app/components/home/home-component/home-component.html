@@ -35,9 +35,9 @@
             <i class="fas fa-door-closed fs-5"></i>
           </div>
         </div>
-        <h3 class="fw-bold text-dark-hotel mb-1">458</h3>
+        <h3 class="fw-bold text-dark-hotel mb-1">{{lstHabitaciones.length}}</h3>
         <p class="text-xs text-primary-hotel mb-0 fw-medium">
-          Relación por `hotel_id` íntegra
+          Habitaciones Totales
         </p>
       </div>
     </div>
@@ -126,54 +126,29 @@
       <div class="dashboard-block p-4 rounded-4 bg-white shadow-sm">
         <div class="d-flex justify-content-between align-items-center mb-4">
           <div>
-            <h4 class="fs-5 fw-bold text-dark-hotel mb-1">Muestra de Habitaciones ($N$)</h4>
-            <span class="text-xs text-muted-hotel">Clave Única: `uq_habitacion_por_hotel`</span>
+            <h4 class="fs-5 fw-bold text-dark-hotel mb-1">Muestra de Habitaciones </h4>
           </div>
           <button routerLink="/habitaciones" class="btn btn-hotel-link text-xs fw-semibold p-0">Ver Todas</button>
         </div>
 
-        <div class="d-flex flex-column gap-3">
+        <div *ngFor="let habitacion of lstHabitaciones" class="d-flex flex-column gap-3">
           <div class="room-data-item p-3 rounded-3 border">
             <div class="d-flex justify-content-between align-items-start mb-2">
               <div>
-                <span class="badge-room-num text-xs fw-bold me-2">Nº 101A</span>
-                <span class="text-sm fw-semibold text-dark-hotel">Suite</span>
+                <span class="badge-room-num text-xs fw-bold me-2">Nº {{habitacion.numero}}</span>
+                <span class="text-sm fw-semibold text-dark-hotel">{{habitacion.tipo}}</span>
               </div>
-              <span class="badge-status status-disponible">Disponible</span>
+              <span class="badge-status status-disponible">{{habitacion.estado}}</span>
             </div>
             <div class="d-flex justify-content-between text-xs text-muted-hotel">
-              <span><i class="fas fa-users me-1 text-muted"></i> Capacidad: 4 Pers</span>
-              <span class="fw-bold text-primary-hotel">$250.00 / noche</span>
+              <span><i class="fas fa-users me-1 text-muted"></i> Capacidad: {{habitacion.capacidad}}</span>
+              <span class="fw-bold text-primary-hotel">Q.{{habitacion.precioNoche}}/ noche</span>
             </div>
           </div>
 
-          <div class="room-data-item p-3 rounded-3 border">
-            <div class="d-flex justify-content-between align-items-start mb-2">
-              <div>
-                <span class="badge-room-num text-xs fw-bold me-2">Nº 102</span>
-                <span class="text-sm fw-semibold text-dark-hotel">Doble</span>
-              </div>
-              <span class="badge-status status-mantenimiento">Mantenimiento</span>
-            </div>
-            <div class="d-flex justify-content-between text-xs text-muted-hotel">
-              <span><i class="fas fa-users me-1 text-muted"></i> Capacidad: 2 Pers</span>
-              <span class="fw-bold text-primary-hotel">$120.00 / noche</span>
-            </div>
-          </div>
 
-          <div class="room-data-item p-3 rounded-3 border">
-            <div class="d-flex justify-content-between align-items-start mb-2">
-              <div>
-                <span class="badge-room-num text-xs fw-bold me-2">Nº 204</span>
-                <span class="text-sm fw-semibold text-dark-hotel">Individual</span>
-              </div>
-              <span class="badge-status status-ocupada">Ocupada</span>
-            </div>
-            <div class="d-flex justify-content-between text-xs text-muted-hotel">
-              <span><i class="fas fa-user me-1 text-muted"></i> Capacidad: 1 Pers</span>
-              <span class="fw-bold text-primary-hotel">$75.00 / noche</span>
-            </div>
-          </div>
+
+
         </div>
       </div>
     </div>

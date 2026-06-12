@@ -8,7 +8,7 @@ export class AlertService {
 
   confirmarEliminacion(mensaje: string = 'Esta acción no se puede deshacer') {
     return Swal.fire({
-      title: '¿Eliminar El Hotel?',
+      title: '¿Desea eliminar?',
       text: mensaje,
       icon: 'warning',
       showCancelButton: true,

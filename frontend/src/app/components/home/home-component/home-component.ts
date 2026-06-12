@@ -3,6 +3,7 @@ import { HotelService } from '../../../services/hotel.service';
 import { Router } from '@angular/router';
 import { AlertService } from '../../../services/toast.service';
 import { Hotel } from '../../../interfaces/hotel.interface';
+import { HabitacioneService } from '../../../services/habitaciones.service';
 
 @Component({
   selector: 'app-home-component',
@@ -13,10 +14,12 @@ import { Hotel } from '../../../interfaces/hotel.interface';
 export class HomeComponent implements OnInit {
   lstHoteles: Hotel[] = [];
   hoteles: Hotel[] = [];
+  lstHabitaciones: any = [];
 
   hotelesActivos: number = 0;
   hotelesDisponibles: number = 0;
   hotelesInactivos: number = 0;
+
 
   //  Variables de control añadidas para el estado del Modal
   isModalOpen: boolean = false;
@@ -25,11 +28,13 @@ export class HomeComponent implements OnInit {
   constructor(
     private hotelService: HotelService,
     private router: Router,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private habitacionService:HabitacioneService
   ) {}
 
   ngOnInit(): void {
     this.getHoteles();
+    this.getHabitaciones();
   }
 
   getHoteles(): void {
@@ -46,18 +51,32 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  getHabitaciones(){
+    this.habitacionService.getHabitaciones().subscribe({
+      next:(res)=>{
+        console.log('Habitaciones:', res.habitaciones);
+        this.lstHabitaciones = res.habitaciones.slice(0,4)
+      },
+      error:(err) =>{
+        console.log('Error al obtener las habitaciones', err.message);
+      },
+    })
+
+  }
+
   calcularEstadisticasHoteles(): void {
     this.hotelesDisponibles = this.hoteles.length;
     this.hotelesActivos = this.hoteles.filter(hotel => hotel.estado === 'Activo').length;
     this.hotelesInactivos = this.hoteles.filter(hotel => hotel.estado === 'Inactivo').length;
   }
 
+
   crearHotel(): void {
-    this.router.navigate(['/form', 0]);
+    this.router.navigate(['hoteles/form/', 0]);
   }
 
   editarHotel(id: number): void {
-    this.router.navigate(['/form', id]);
+    this.router.navigate(['hoteles/form/', id]);
   }
 
   //  NUEVO: Disparador que recibe el hotel e inyecta el modal al DOM

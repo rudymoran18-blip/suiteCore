@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { HotelComponent } from './pages/hotel/hotel-component/hotel-component';
-import { HabitacionesComponent } from './pages/habitaciones/habitaciones-component/habitaciones-component';
+import { HabitacionesComponent } from './pages/habitacion/habitaciones-component/habitaciones-component';
 import { FooterComponent } from './components/footer/footer-component/footer-component';
 import { SidebarComponent } from './components/sidebar/sidebar-component/sidebar-component';
 import { HomeComponent } from './components/home/home-component/home-component';
@@ -13,6 +13,7 @@ import { NavbarComponent } from './components/navbar/navbar-component/navbar-com
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { FormHabitaciones } from './pages/habitacion/form-habitaciones/form-habitaciones';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { FormsModule } from '@angular/forms';
     SidebarComponent,
     HomeComponent,
     FormHotel,
-    NavbarComponent
+    NavbarComponent,
+    FormHabitaciones
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,157 @@
+<div class="container-fluid px-0 animate-fade-in">
+
+  <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3 mb-4">
+    <div>
+      <h2 class="h4 text-dark-hotel fw-bold mb-1">Inventario de Habitaciones</h2>
+      <p class="text-muted-hotel mb-0 fs-7">Gestión del estado operativo y asignación relacional de los dormitorios.</p>
+    </div>
+    <button (click)="editarHabitacion(0)" class="btn btn-hotel-primary d-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-sm">
+      <i class="fas fa-plus"></i>
+      <span>Agregar Habitación</span>
+    </button>
+  </div>
+
+  <div *ngIf="lstHabitaciones && lstHabitaciones.length > 0; else sinHabitacionesTemplate">
+
+    <div class="card border-0 shadow-sm rounded-4 d-none d-lg-block overflow-hidden">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 custom-room-table">
+          <thead class="table-light-header">
+            <tr>
+              <th class="py-3 text-uppercase tracking-wider fs-8 text-muted-hotel ps-4">Nº Habitación</th>
+              <th class="py-3 text-uppercase tracking-wider fs-8 text-muted-hotel">Hotel ID</th>
+              <th class="py-3 text-uppercase tracking-wider fs-8 text-muted-hotel">Características</th>
+              <th class="py-3 text-uppercase tracking-wider fs-8 text-muted-hotel">Precio por Noche</th>
+              <th class="py-3 text-uppercase tracking-wider fs-8 text-muted-hotel">Estado</th>
+              <th class="pe-4 py-3 text-end text-uppercase tracking-wider fs-8 text-muted-hotel">Acciones</th>
+            </tr>
+          </thead>
+          <tbody class="border-top-0">
+            <tr *ngFor="let habitacion of lstHabitaciones">
+
+              <td class="ps-4">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="room-icon-avatar d-flex align-items-center justify-content-center rounded-3">
+                    <i class="fas fa-door-closed text-teal-primary"></i>
+                  </div>
+                  <div>
+                    <span class="badge-room-num text-xs fw-bold d-inline-block mb-1">Nº {{ habitacion.numero }}</span>
+                    <h6 class="mb-0 text-dark-hotel fw-semibold fs-7">{{ habitacion.tipo }}</h6>
+                  </div>
+                </div>
+              </td>
+
+              <td class="text-dark-hotel fs-7 fw-medium">
+                <i class="fas fa-building me-2 opacity-50 text-xs"></i>
+                Sede #{{ habitacion.hotelId }}
+              </td>
+
+              <td class="text-muted-hotel fs-7">
+                <div class="d-flex align-items-center gap-2">
+                  <i class="fas fa-users opacity-70 text-xs"></i>
+                  <span>Capacidad: <strong>{{ habitacion.capacidad }} {{ habitacion.capacidad === 1 ? 'Persona' : 'Personas' }}</strong></span>
+                </div>
+              </td>
+
+              <td class="fs-7 fw-bold text-primary-hotel">
+                Q{{ habitacion.precioNoche }}
+              </td>
+
+              <td>
+                <span class="badge rounded-pill px-2.5 py-1 fs-8 fw-bold text-uppercase"
+                      [ngClass]="{
+                        'bg-success-soft text-success': habitacion.estado === 'Disponible',
+                        'bg-warning-soft text-warning': habitacion.estado === 'Mantenimiento',
+                        'bg-danger-soft text-danger': habitacion.estado === 'Ocupada',
+                        'bg-secondary-soft text-muted': habitacion.estado === 'Inactiva'
+                      }">
+                  {{ habitacion.estado }}
+                </span>
+              </td>
+
+              <td class="pe-4 text-end">
+                <div class="d-inline-flex gap-2">
+                  <button class="btn btn-action-room text-primary" title="Editar Habitación" (click)="editarHabitacion(habitacion.id)">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-action-room text-danger" title="Eliminar/Inactivar" (click)="eliminarHabitacion(habitacion.id)">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </div>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row g-3 d-lg-none">
+      <div class="col-12 col-md-6" *ngFor="let habitacion of lstHabitaciones">
+        <div class="card border-0 shadow-sm rounded-4 p-3 position-relative overflow-hidden">
+
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="room-icon-avatar d-flex align-items-center justify-content-center rounded-3">
+              <i class="fas fa-door-closed text-teal-primary"></i>
+            </div>
+            <div class="flex-grow-1 text-truncate">
+              <span class="badge-room-num text-xs fw-bold mb-1">Nº {{ habitacion.numero }}</span>
+              <h6 class="mb-0 text-dark-hotel fw-bold text-truncate">{{ habitacion.tipo }}</h6>
+            </div>
+            <span class="badge rounded-pill px-2.5 py-1 fs-8 fw-bold text-uppercase"
+                  [ngClass]="{
+                    'bg-success-soft text-success': habitacion.estado === 'Disponible',
+                    'bg-warning-soft text-warning': habitacion.estado === 'Mantenimiento',
+                    'bg-danger-soft text-danger': habitacion.estado === 'Ocupada',
+                    'bg-secondary-soft text-muted': habitacion.estado === 'Inactiva'
+                  }">
+              {{ habitacion.estado }}
+            </span>
+          </div>
+
+          <div class="mb-3 border-top border-light-hotel pt-2.5">
+            <p class="mb-2 text-dark-hotel fs-7 text-truncate">
+              <i class="fas fa-building me-2 text-teal-primary opacity-70"></i>Sede ID: #{{ habitacion.hotelId }}
+            </p>
+            <p class="mb-2 text-muted-hotel fs-7">
+              <i class="fas fa-users me-2 text-teal-primary opacity-70"></i>Capacidad: {{ habitacion.capacidad }} Personas
+            </p>
+            <p class="mb-0 text-primary-hotel fs-7 fw-bold">
+              <i class="fas fa-tag me-2 text-teal-primary opacity-70"></i>Q{{ habitacion.precioNoche }} / noche
+            </p>
+          </div>
+
+          <div class="d-flex justify-content-end gap-2 border-top border-light-hotel pt-2">
+            <button class="btn btn-sm btn-light-action text-primary d-flex align-items-center gap-1" (click)="editarHabitacion(habitacion.id)">
+              <i class="fas fa-edit"></i> Editar
+            </button>
+            <button class="btn btn-sm btn-light-action text-danger d-flex align-items-center gap-1" (click)="eliminarHabitacion(habitacion.id)">
+              <i class="fas fa-trash-alt"></i> Borrar
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <ng-template #sinHabitacionesTemplate>
+    <div class="card border-0 shadow-sm rounded-4 p-5 text-center bg-white animate-fade-in mt-2">
+      <div class="empty-state-container d-flex flex-column align-items-center py-4">
+        <div class="empty-icon-wrapper mb-4 d-flex align-items-center justify-content-center rounded-circle">
+          <i class="fas fa-bed text-muted-hotel fs-3"></i>
+        </div>
+        <h5 class="fw-bold text-dark-hotel mb-2">Sin habitaciones vinculadas</h5>
+        <p class="text-muted-hotel fs-7 max-w-md mx-auto mb-4">
+          No existen dormitorios acoplados al identificador relacional <code class="text-xs px-1.5 py-0.5 rounded bg-light border">hotelId</code> en este momento.
+        </p>
+        <button (click)="editarHabitacion(0)" class="btn btn-hotel-secondary d-flex align-items-center gap-2 px-3 py-2 rounded-3 border">
+          <i class="fas fa-plus text-xs"></i>
+          <span>Vincular Primera Habitación</span>
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+</div>
